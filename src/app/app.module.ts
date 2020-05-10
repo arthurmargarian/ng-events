@@ -6,7 +6,8 @@ import {SharedModule} from './shared/shared.module';
 import {GuestModule} from './guest/guest.module';
 import {UserModule} from './user/user.module';
 import {AdminModule} from './admin/admin.module';
-
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import {AdminModule} from './admin/admin.module';
     GuestModule,
     UserModule,
     AdminModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
