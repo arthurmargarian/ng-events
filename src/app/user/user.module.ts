@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
+import { EventsGridComponent } from './components/events-grid/events-grid.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [EventsGridComponent],
   imports: [
     SharedModule
   ]

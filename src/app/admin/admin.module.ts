@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
+import { EventsTableComponent } from './components/events-table/events-table.component';
+import {AdminRoutingModule} from './admin-routing.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [EventsTableComponent],
   imports: [
-    SharedModule
+    SharedModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }
