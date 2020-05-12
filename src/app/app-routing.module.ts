@@ -1,19 +1,32 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {NotFoundComponent} from './not-found/not-found.component';
 import {LoginComponent} from './guest/components/login/login.component';
+import {EventsGridComponent} from './user/components/events-grid/events-grid.component';
 import {EventsTableComponent} from './admin/components/events-table/events-table.component';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {RegisterComponent} from './guest/components/register/register.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
-    loadChildren: './guest/guest.module#GuestModule',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path: 'events',
-    component: EventsTableComponent,
-    loadChildren: './admin/admin.module#AdminModule'
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'events-grid',
+    component: EventsGridComponent
+  },
+  {
+    path: 'events-table',
+    component: EventsTableComponent
   },
   {
     path: '**',
@@ -21,9 +34,6 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
+@NgModule({imports: [RouterModule.forRoot(routes)]})
 export class AppRoutingModule {
 }
