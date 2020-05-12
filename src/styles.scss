@@ -3,13 +3,145 @@
 // regular style toast
 @import '~ngx-toastr/toastr';
 
-//// bootstrap style toast
-//// or import a bootstrap 4 alert styled design (SASS ONLY)
-//// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
-//@import '~ngx-toastr/toastr-bs4-alert';
-//
-//// if you'd like to use it without importing all of bootstrap it requires
-//@import '~bootstrap/scss/functions';
-//@import '~bootstrap/scss/variables';
-//@import '~bootstrap/scss/mixins';
-//@import '~ngx-toastr/toastr-bs4-alert';
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url('assets/images/bg.jpg') no-repeat fixed;
+  background-size: 100% 100%;
+  font-family: Candara, serif;
+  z-index: 0;
+  //background overlay
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6) fixed;
+    z-index: -1;
+  }
+}
+
+.container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.form-group {
+  position: relative;
+
+  textarea {
+    border: none;
+    background: none;
+    resize: none;
+    padding-top: 10px;
+    height: 40px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: #FFFFFF 1px solid;
+
+    &:focus {
+      outline: none;
+      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
+    }
+  }
+
+  select {
+    padding: 10px 0;
+    color: rgba(255, 255, 255, 0.9);
+    background: none;
+    border: none;
+    border-bottom: #FFFFFF 1px solid;
+
+    &:focus {
+      outline: none;
+      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
+    }
+
+    option {
+      background: rgb(30, 67, 90);
+      color: #fff;
+    }
+
+  }
+
+  input {
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: #FFFFFF 1px solid;
+
+    &:focus {
+      outline: none;
+      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
+    }
+  }
+
+
+  .input-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.6);
+    user-select: none;
+    cursor: text;
+    transition: 0.3s ease;
+
+    &.transformed {
+      cursor: default;
+      font-size: 13px;
+      transform: translateY(-13px);
+    }
+  }
+}
+
+
+.btn {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px 10px;
+  background: rgba(71, 88, 106, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  color: #FFFFFF;
+  transition: 0.2s ease;
+
+  &:hover {
+    background: rgb(71, 88, 106) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  &.valid:hover {
+    background: rgba(0, 128, 0, 0.3) !important;
+  }
+
+  &.invalid:hover {
+    background: rgba(255, 0, 0, 0.3) !important;
+  }
+}
+
+
+
+.no-event-msg{
+  text-align: center;
+  padding: 60px 0;
+  color: rgba(255, 255, 255,0.9);
+}
