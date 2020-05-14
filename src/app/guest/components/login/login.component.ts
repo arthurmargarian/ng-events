@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {ILoginRes} from '../../../shared/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private authService:AuthService
   ) {
     this.titleService.setTitle('Login • Events');
   }
@@ -38,7 +42,25 @@ export class LoginComponent implements OnInit {
     this.showLoader = true;
     const formData = {...this.loginForm.value};
     if (this.loginForm.valid) {
-      console.log('auth logic');
+      this.authService.login(formData)
+        .subscribe(
+          (res: ILoginRes) => {
+            localStorage.setItem('token', res.access_token);
+            localStorage.setItem('fullName', `${res.user.srName} ${res.user.name}`);
+            this.showLoader = false;
+            if (res.user.isAdmin) {
+              localStorage.setItem('isAdmin', 'admin');
+              this.router.navigate(['events-table']);
+            } else {
+              this.router.navigate(['events-grid']);
+            }
+          },
+          (error: HttpErrorResponse) => {
+            this.showLoader = false;
+            this.invalidForm = true;
+            this.errorMessage = error.error.message;
+            this.loginForm.controls.password.reset();
+          });
     } else {
       this.invalidForm = true;
       this.loginForm.controls.password.reset();
