@@ -1,0 +1,19 @@
+.container {
+  background: rgba(71, 88, 106, 0.9);
+  margin: 50px auto 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 20px;
+
+  h1 {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+  }
+}

@@ -4,7 +4,8 @@
     <form
       [formGroup]="loginForm"
       (ngSubmit)="loginSubmit()"
-      (input)="onFormChanges()">
+      (input)="onFormChanges()"
+    >
       <div class="form-group">
         <label>
           <span class="input-placeholder">Email</span>
@@ -17,12 +18,14 @@
           <input appPlaceholderTranslate type="password" formControlName="password">
         </label>
       </div>
-      <button type="submit"
-              class="btn login-btn"
-              [class.valid]="!invalidForm"
-              [class.invalid]="invalidForm"
-              [disabled]="showLoader">
-        <span *ngIf="!showLoader; else loader" class="login-span">Log In</span>
+      <button
+        type="submit"
+        class="btn login-btn"
+        [class.valid]="!invalidForm"
+        [class.invalid]="invalidForm"
+        [disabled]="showLoader"
+      >
+        <span *ngIf="!showLoader;else loader" class="login-span">Log In</span>
         <ng-template #loader>
           <app-loader [size]="'sm'"></app-loader>
         </ng-template>
@@ -30,7 +33,8 @@
     </form>
     <div class="error-msg"
          *ngIf="errorMessage"
-         (click)="errorMessage = ''">
+         (click)="errorMessage = ''"
+    >
       {{errorMessage | titlecase}}
     </div>
   </div>

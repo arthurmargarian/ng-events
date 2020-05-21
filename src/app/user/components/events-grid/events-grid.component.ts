@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EventsService} from '../../../_services/events.service';
+import {IEvent, IEventType} from '../../../_shared/interfaces';
 
 @Component({
   selector: 'app-events-grid',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events-grid.component.scss']
 })
 export class EventsGridComponent implements OnInit {
+  private allEvents: IEvent[];
+  private eventTypes: IEventType[];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private eventsService: EventsService) {
   }
 
+  ngOnInit() {
+    this.eventsService.getAllEvents().subscribe((res: IEvent[]) => {
+      this.allEvents = res;
+    });
+    this.eventsService.getEventTypes().subscribe((res: IEventType[]) => {
+      this.eventTypes = res;
+    });
+  }
 }

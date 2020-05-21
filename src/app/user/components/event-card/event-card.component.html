@@ -1,0 +1,18 @@
+<div class="event-card">
+  <div class="event-image">
+    <img src="../../../../assets/images/party.jpg" alt="" *ngIf="showImage;else imgLoader">
+    <ng-template #imgLoader >
+      <app-loader [size]="'lg'" class="img-loader"></app-loader>
+    </ng-template>
+  </div>
+  <div class="event-content" *ngIf="!showLoader,else loader">
+    <div class="event-name">{{event.name}}</div>
+    <div class="event-type">{{eventTypes[event.eventType - 1].type}}</div>
+    <p class="event-des" title="{{event.description}}">{{event.description}}</p>
+    <div class="event-date">{{event.date}}</div>
+  </div>
+  <ng-template #loader>
+    <app-loader [size]="'md'" class="info-loader"></app-loader>
+  </ng-template>
+</div>
+

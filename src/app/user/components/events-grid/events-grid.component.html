@@ -1,3 +1,14 @@
-<p>
-  events-grid works!
-</p>
+<main class="container" *ngIf="allEvents">
+  <h1>Events</h1>
+  <div class="cards" *ngIf="allEvents.length !== 0; else noEvents">
+    <app-event-card
+      *ngFor="let event of allEvents"
+      [event]="event"
+      [eventTypes]="eventTypes"
+    >
+    </app-event-card>
+  </div>
+  <ng-template #noEvents>
+    <h2 class="no-event-msg">No Event To Show</h2>
+  </ng-template>
+</main>

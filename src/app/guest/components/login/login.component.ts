@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../services/auth.service';
+import {AuthService} from '../../../_services/auth.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {ILoginRes} from '../../../shared/interfaces';
+import {ILoginRes} from '../../../_shared/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private titleService: Title,
-    private router: Router,
-    private authService:AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.titleService.setTitle('Login • Events');
   }

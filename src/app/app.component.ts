@@ -1,17 +1,10 @@
-import { Component } from '@angular/core';
-import {ToastrService} from 'ngx-toastr';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private toastr: ToastrService) {
-  }
-  title = 'kursayin';
-
-  public showNotif():void {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-  }
+  constructor() { }
 }

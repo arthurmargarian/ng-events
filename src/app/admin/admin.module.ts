@@ -1,11 +1,27 @@
-import { NgModule } from '@angular/core';
-import {SharedModule} from '../shared/shared.module';
-import { EventsTableComponent } from './components/events-table/events-table.component';
+import {NgModule} from '@angular/core';
+import {EventsTableComponent} from './components/events-table/events-table.component';
+import {SharedModule} from '../_shared/shared.module';
+import {AdminDashboardComponent} from './components/dashboard/dashboard.component';
+import {DeleteModalComponent} from './components/modals/delete-modal/delete-modal.component';
+import {FormModalComponent} from './components/modals/form-modal/form-modal.component';
 
 @NgModule({
-  declarations: [EventsTableComponent],
+  declarations: [
+    EventsTableComponent,
+    AdminDashboardComponent,
+    DeleteModalComponent,
+    FormModalComponent,
+  ],
   imports: [
-    SharedModule,
-  ]
+    SharedModule
+  ],
+  exports: [
+    // FormModalComponent,
+    // EventsTableComponent,
+    // DeleteModalComponent,
+    // AdminDashboardComponent,
+  ],
+  providers: []
 })
-export class AdminModule { }
+export class AdminModule {
+}

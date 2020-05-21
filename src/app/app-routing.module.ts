@@ -1,32 +1,34 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './guest/components/login/login.component';
-import {EventsGridComponent} from './user/components/events-grid/events-grid.component';
-import {EventsTableComponent} from './admin/components/events-table/events-table.component';
-import {NotFoundComponent} from './not-found/not-found.component';
-import {RegisterComponent} from './guest/components/register/register.component';
+import {AuthGuard} from './_guards/auth.guard';
+import {IsAdminGuard} from './_guards/is-admin.guard';
+import {GuestGuard} from './_guards/guest.guard';
+import {isNotAdminGuard} from './_guards/is-not-admin.guard';
+import {NotFoundComponent} from './_not-found/not-found.component';
+import {AdminDashboardComponent} from './admin/components/dashboard/dashboard.component';
+import {UserDashboardComponent} from './user/components/dashboard/dashboard.component';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [GuestGuard]
+  },
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
     path: 'events-grid',
-    component: EventsGridComponent
+    component: UserDashboardComponent,
+    canActivate: [AuthGuard, isNotAdminGuard]
   },
   {
     path: 'events-table',
-    component: EventsTableComponent
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard, IsAdminGuard]
   },
   {
     path: '**',

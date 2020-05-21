@@ -1,0 +1,110 @@
+<div class="modal">
+  <div class="modal-body" *ngIf="id==='create';else editModal">
+  <h2>Create Event</h2>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="createEvent()"
+    (input)="formChanges()"
+  >
+    <div class="form-group">
+      <label>
+        <span class="input-placeholder">Name</span>
+        <input appPlaceholderTranslate type="text" formControlName="name">
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        <span class="input-placeholder">Description</span>
+        <textarea appPlaceholderTranslate formControlName="description"></textarea>
+      </label>
+    </div>
+    <div class="form-group" *ngIf="eventTypes">
+      <label>
+        <span class="input-placeholder">Type</span>
+        <select appPlaceholderTranslate formControlName="eventType">
+          <option *ngFor="let type of eventTypes" value="{{type.value}}">
+            {{type.type}}
+          </option>
+        </select>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        <span class="input-placeholder">Date</span>
+        <input
+          appPlaceholderTranslate
+          type="datetime-local"
+          formControlName="date"
+          min="{{now | date:'yyyy-MM-dd'}}T{{now| date:'hh:mm'}}"
+        >
+      </label>
+    </div>
+    <button class="btn btn-cancel" type="button" (click)="closeModal('create');">Cancel</button>
+    <button class="btn btn-create" type="submit">Create</button>
+  </form>
+  <div class="error-mesg"
+       *ngIf="errorMessage"
+       (click)="errorMessage = ''"
+  >
+    {{errorMessage | titlecase}}
+  </div>
+</div>
+</div>
+<ng-template #editModal>
+  <div class="modal-body">
+    <h2>Edit Event</h2>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="editEvent()"
+      *ngIf="currentEvent;else loader"
+    >
+      <div class="form-group">
+        <label>
+          <span class="input-placeholder transformed">Name</span>
+          <input appPlaceholderTranslate type="text" formControlName="name">
+        </label>
+      </div>
+      <div class="form-group" *ngIf="eventTypes">
+        <label>
+          <span class="input-placeholder transformed">Type</span>
+          <input
+            type="text"
+            [value]="eventTypes[currentEvent.eventType-1].type"
+            formControlName="eventType"
+            appPlaceholderTranslate
+          >
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          <span class="input-placeholder transformed">Description</span>
+          <textarea appPlaceholderTranslate formControlName="description"></textarea>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          <span class="input-placeholder transformed">Date</span>
+          <input
+            appPlaceholderTranslate
+            type="datetime-local"
+            formControlName="date"
+            min="{{now | date:'yyyy-MM-dd'}}T{{now| date:'hh:mm'}}"
+          >
+        </label>
+      </div>
+      <button class="btn btn-cancel" type="button" (click)="closeModal('edit');">Cancel</button>
+      <button class="btn btn-create" type="submit">Edit</button>
+    </form>
+    <div class="error-mesg"
+         *ngIf="errorMessage"
+         (click)="errorMessage = ''"
+    >
+      {{errorMessage | titlecase}}
+    </div>
+    <ng-template #loader>
+      <app-loader [size]="'lg'"></app-loader>
+    </ng-template>
+  </div>
+</ng-template>
+<div class="modal-background"></div>
