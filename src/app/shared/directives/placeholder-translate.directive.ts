@@ -19,5 +19,4 @@ export class PlaceholderTranslateDirective {
       this.renderer.removeClass(this.placeholder, 'transformed');
     }
   }
-
 }

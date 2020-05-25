@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {LoginComponent} from './components/login/login.component';
-import {SharedModule} from '../_shared/shared.module';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -10,9 +10,7 @@ import {SharedModule} from '../_shared/shared.module';
   imports: [
     SharedModule,
   ],
-  exports: [
-    // LoginComponent
-  ],
+  exports: [],
   providers: []
 })
 export class GuestModule {

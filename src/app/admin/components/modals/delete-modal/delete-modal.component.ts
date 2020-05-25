@@ -1,7 +1,7 @@
-import {Component, DoCheck, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
-import {ModalService} from '../../../../_services/modal.service';
-import {IEvent} from '../../../../_shared/interfaces';
-import {EventsService} from '../../../../_services/events.service';
+import {Component, DoCheck, ElementRef, Input, OnInit} from '@angular/core';
+import {IEvent} from '../../../../shared/interfaces';
+import {ModalService} from '../../../../services/modal.service';
+import {EventsService} from '../../../../services/events.service';
 
 @Component({
   selector: 'app-delete-modal',

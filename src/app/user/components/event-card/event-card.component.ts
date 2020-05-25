@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges} from '@angular/core';
-import {IEvent, IEventType} from '../../../_shared/interfaces';
+import {IEvent, IEventType} from '../../../shared/interfaces';
 
 @Component({
   selector: 'app-event-card',
@@ -9,8 +9,8 @@ import {IEvent, IEventType} from '../../../_shared/interfaces';
 export class EventCardComponent implements OnChanges {
   @Input() event: IEvent;
   @Input() eventTypes: IEventType[];
-  private showLoader: Boolean = true;
-  private showImage: Boolean = false;
+  private showLoader = true;
+  private showImage = false;
 
   constructor() {
   }

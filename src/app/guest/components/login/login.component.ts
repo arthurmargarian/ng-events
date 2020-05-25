@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../_services/auth.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {ILoginRes} from '../../../_shared/interfaces';
+import {AuthService} from '../../../services/auth.service';
+import {ILoginRes} from '../../../shared/interfaces';
 
 @Component({
   selector: 'app-login',

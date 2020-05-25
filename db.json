@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Arthur",
       "srName": "Margarian",
-      "email": "test@gmail.com",
+      "email": "admin@gmail.com",
       "password": "pass1234",
       "isAdmin": true
     },
@@ -12,7 +12,7 @@
       "id": 2,
       "name": "User",
       "srName": "User1",
-      "email": "user1@test.com",
+      "email": "user@gmail.com",
       "password": "pass1234",
       "isAdmin": false
     }

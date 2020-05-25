@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {EventsService} from '../../../_services/events.service';
-import {IEvent, IEventType} from '../../../_shared/interfaces';
+import {IEvent, IEventType} from '../../../shared/interfaces';
+import {EventsService} from '../../../services/events.service';
 
 @Component({
   selector: 'app-events-grid',

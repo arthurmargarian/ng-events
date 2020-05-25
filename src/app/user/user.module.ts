@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {EventsGridComponent} from './components/events-grid/events-grid.component';
-import {SharedModule} from '../_shared/shared.module';
 import {UserDashboardComponent} from './components/dashboard/dashboard.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,11 +13,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
   imports: [
     SharedModule
   ],
-  exports: [
-    // UserDashboardComponent,
-    // EventsGridComponent,
-    // EventCardComponent
-  ]
+  exports: []
 })
 export class UserModule {
 }

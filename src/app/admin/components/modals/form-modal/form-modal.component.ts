@@ -1,8 +1,8 @@
 import {Component, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {IEvent, IEventType} from '../../../../_shared/interfaces';
-import {ModalService} from '../../../../_services/modal.service';
-import {EventsService} from '../../../../_services/events.service';
+import {IEvent, IEventType} from '../../../../shared/interfaces';
+import {ModalService} from '../../../../services/modal.service';
+import {EventsService} from '../../../../services/events.service';
 
 @Component({
   selector: 'app-form-modal',

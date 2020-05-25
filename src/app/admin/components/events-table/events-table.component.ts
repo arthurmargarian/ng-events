@@ -1,8 +1,8 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {IEvent, IEventType} from '../../../_shared/interfaces';
 import {HttpResponse} from '@angular/common/http';
-import {EventsService} from '../../../_services/events.service';
-import {ModalService} from '../../../_services/modal.service';
+import {IEvent, IEventType} from '../../../shared/interfaces';
+import {EventsService} from '../../../services/events.service';
+import {ModalService} from '../../../services/modal.service';
 
 @Component({
   selector: 'app-events-table',
