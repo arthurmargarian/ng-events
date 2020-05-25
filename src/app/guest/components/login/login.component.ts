@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {AuthService} from '../../../services/auth.service';
 import {ILoginRes} from '../../../shared/interfaces';
+import { ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +14,15 @@ import {ILoginRes} from '../../../shared/interfaces';
 })
 export class LoginComponent implements OnInit {
   private loginForm: FormGroup;
-  private errorMessage: string;
   private showLoader: boolean;
-  private invalidForm: boolean;
+  private validCredentials = true;
+  private submitted: boolean;
 
   constructor(
     private titleService: Title,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.titleService.setTitle('Login • Events');
   }
@@ -33,15 +35,16 @@ export class LoginComponent implements OnInit {
       ),
       password: new FormControl(
         '',
-        [Validators.required, Validators.minLength(6)]
+        [Validators.required]
       )
     });
   }
 
   loginSubmit() {
-    this.showLoader = true;
+    this.submitted = true;
     const formData = {...this.loginForm.value};
     if (this.loginForm.valid) {
+      this.validCredentials = true;
       this.authService.login(formData)
         .subscribe(
           (res: ILoginRes) => {
@@ -56,21 +59,15 @@ export class LoginComponent implements OnInit {
             }
           },
           (error: HttpErrorResponse) => {
-            this.showLoader = false;
-            this.invalidForm = true;
-            this.errorMessage = error.error.message;
-            this.loginForm.controls.password.reset();
+            this.validCredentials = false;
+            this.toastrService.error(null, error.error.msg);
           });
     } else {
-      this.invalidForm = true;
-      this.loginForm.controls.password.reset();
       this.showLoader = false;
-      this.errorMessage = this.loginForm.controls.email.invalid ? 'Your email is invalid' : 'Your password is invalid';
     }
   }
 
-  onFormChanges() {
-    this.invalidForm = Boolean(this.loginForm.touched && this.loginForm.invalid);
-    this.errorMessage = '';
+   public onFormChanges():void {
+     this.validCredentials = true;
   }
 }

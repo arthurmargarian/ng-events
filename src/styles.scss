@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-* {
-  margin: 0;
-  padding: 0;
-}
+@import "~bootstrap/dist/css/bootstrap.css";
+// regular style toast
+@import '~ngx-toastr/toastr';
 
 body {
   position: relative;
@@ -26,118 +25,186 @@ body {
   }
 }
 
-.container {
-  width: 75%;
-  margin: 0 auto;
+
+//.form-groupp {
+//
+//  textarea {
+//    border: none;
+//    background: none;
+//    resize: none;
+//    padding-top: 10px;
+//    height: 40px;
+//    line-height: 20px;
+//    color: rgba(255, 255, 255, 0.9);
+//    border-bottom: #FFFFFF 1px solid;
+//
+//    &:focus {
+//      outline: none;
+//      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
+//    }
+//  }
+//
+//  select {
+//    padding: 10px 0;
+//    color: rgba(255, 255, 255, 0.9);
+//    background: none;
+//    border: none;
+//    border-bottom: #FFFFFF 1px solid;
+//
+//    &:focus {
+//      outline: none;
+//      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
+//    }
+//
+//    option {
+//      background: rgb(30, 67, 90);
+//      color: #fff;
+//    }
+//
+//  }
+//
+//  input {
+//    border: none;
+//    background: none;
+//    color: rgba(255, 255, 255, 0.9);
+//    border-bottom: #FFFFFF 1px solid;
+//
+//    &:focus {
+//      outline: none;
+//      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
+//    }
+//  }
+//
+//
+//  .input-placeholder {
+//    position: absolute;
+//    top: 0;
+//    left: 0;
+//    z-index: 2;
+//    color: rgba(255, 255, 255, 0.6);
+//    user-select: none;
+//    cursor: text;
+//    transition: 0.3s ease;
+//
+//    &.transformed {
+//      cursor: default;
+//      font-size: 13px;
+//      transform: translateY(-13px);
+//    }
+//  }
+//}
+//
+//
+//.btn {
+//  cursor: pointer;
+//  font-size: 16px;
+//  padding: 5px 10px;
+//  background: rgba(71, 88, 106, 0.7);
+//  border: 1px solid rgba(255, 255, 255, 0.3);
+//  border-radius: 5px;
+//  color: #FFFFFF;
+//  transition: 0.2s ease;
+//
+//  &:hover {
+//    background: rgb(71, 88, 106) !important;
+//    border: 1px solid rgba(255, 255, 255, 0.1);
+//    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+//  }
+//
+//  &:focus {
+//    outline: none;
+//  }
+//
+//  &:active {
+//    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
+//  }
+//
+//  &.valid:hover {
+//    background: rgba(0, 128, 0, 0.3) !important;
+//  }
+//
+//  &.invalid:hover {
+//    background: rgba(255, 0, 0, 0.3) !important;
+//  }
+//}
+//
+//
+//
+//.no-event-msg{
+//  text-align: center;
+//  padding: 60px 0;
+//  color: rgba(255, 255, 255,0.9);
+//}
+
+.no-background {
+  background: none;
+}
+
+.validation-message {
+  height: 20px;
+}
+
+.h-color {
+  color: rgb(38, 55, 73);
 }
 
 .form-group {
-  position: relative;
-
-  textarea {
-    border: none;
-    background: none;
-    resize: none;
-    padding-top: 10px;
-    height: 40px;
-    line-height: 20px;
-    color: rgba(255, 255, 255, 0.9);
-    border-bottom: #FFFFFF 1px solid;
-
-    &:focus {
-      outline: none;
-      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
-    }
-  }
-
-  select {
-    padding: 10px 0;
-    color: rgba(255, 255, 255, 0.9);
-    background: none;
-    border: none;
-    border-bottom: #FFFFFF 1px solid;
-
-    &:focus {
-      outline: none;
-      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
-    }
-
-    option {
-      background: rgb(30, 67, 90);
-      color: #fff;
-    }
-
-  }
-
   input {
-    border: none;
-    background: none;
-    color: rgba(255, 255, 255, 0.9);
-    border-bottom: #FFFFFF 1px solid;
-
     &:focus {
       outline: none;
-      border-bottom: rgba(47, 60, 75, 0.9) 1px solid;
-    }
-  }
-
-
-  .input-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.6);
-    user-select: none;
-    cursor: text;
-    transition: 0.3s ease;
-
-    &.transformed {
-      cursor: default;
-      font-size: 13px;
-      transform: translateY(-13px);
+      box-shadow: none;
     }
   }
 }
 
-
-.btn {
-  cursor: pointer;
+.my-btn {
+  background: rgba(16, 44, 73, 0.7);
   font-size: 16px;
   padding: 5px 10px;
-  background: rgba(71, 88, 106, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
   color: #FFFFFF;
   transition: 0.2s ease;
 
   &:hover {
-    background: rgb(71, 88, 106) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(16, 44, 73, 0.8);
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   }
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
+    }
+    &.valid:hover {
+      background: rgba(16, 44, 73, 0.8);
+    }
 
-  &:focus {
-    outline: none;
-  }
-
-  &:active {
-    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
-  }
-
-  &.valid:hover {
-    background: rgba(0, 128, 0, 0.3) !important;
-  }
-
-  &.invalid:hover {
-    background: rgba(255, 0, 0, 0.3) !important;
-  }
+    &.invalid:hover {
+      background: rgba(255, 0, 0, 0.6);
+    }
 }
 
-
-
-.no-event-msg{
-  text-align: center;
-  padding: 60px 0;
-  color: rgba(255, 255, 255,0.9);
-}
+//.btn {
+//  &:hover {
+//    background: rgb(71, 88, 106) !important;
+//    border: 1px solid rgba(255, 255, 255, 0.1);
+//    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+//  }
+//
+//  &:focus {
+//    outline: none;
+//  }
+//
+//  &:active {
+//    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
+//  }
+//
+//  &.valid:hover {
+//    background: rgba(0, 128, 0, 0.3) !important;
+//  }
+//
+//  &.invalid:hover {
+//    background: rgba(255, 0, 0, 0.3) !important;
+//  }
+//}

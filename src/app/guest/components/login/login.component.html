@@ -1,41 +1,61 @@
-<main>
-  <div class="login-form">
-    <h2 class="login-heading">Log In</h2>
-    <form
-      [formGroup]="loginForm"
-      (ngSubmit)="loginSubmit()"
-      (input)="onFormChanges()"
-    >
-      <div class="form-group">
-        <label>
-          <span class="input-placeholder">Email</span>
-          <input appPlaceholderTranslate type="text" formControlName="email">
-        </label>
+<main class="container">
+  <div class="row m-0 vh-100">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 align-self-center">
+      <div class="card p-lg-4">
+        <div class="card-header mb-4 h-color text-center no-background"><h3>Log In</h3></div>
+        <div class="card-body p-0">
+          <form
+            [formGroup]="loginForm"
+            (input)="onFormChanges()"
+            (ngSubmit)="loginSubmit()">
+            <div class="form-group m-0">
+              <label for="email" class="h-color">Email address</label>
+              <input type="email"
+                     [style.border]="!validCredentials || ((loginForm.get('email').touched || submitted) && (loginForm.get('email').errors?.required || loginForm.get('email').errors?.email)) ? '1px solid red' : '1px solid gray'"
+                     formControlName="email"
+                     class="form-control no-background"
+                     id="email"
+                     placeholder="Enter email">
+              <div class="validation-message text-right">
+                <small *ngIf="(loginForm.get('email').touched || submitted) && loginForm.get('email').errors?.required"
+                       class="text-danger font-italic text-right">
+                  Required Field
+                </small>
+                <small *ngIf="(loginForm.get('email').touched || submitted) && loginForm.get('email').errors?.email"
+                       class="text-danger font-italic text-right">
+                  Email is not valid
+                </small>
+              </div>
+            </div>
+            <div class="form-group m-0">
+              <label for="password" class="h-color">Password</label>
+              <input type="password"
+                     [style.border]="!validCredentials || ((loginForm.get('password').touched || submitted) && loginForm.get('password').errors?.required) ? '1px solid red' : '1px solid gray'"
+                     formControlName="password"
+                     class="form-control no-background"
+                     id="password"
+                     placeholder="Enter password">
+              <div class="validation-message text-right">
+                <small
+                  *ngIf="(loginForm.get('password').touched || submitted) && loginForm.get('password').errors?.required"
+                  class="text-danger font-italic text-right">
+                  Required Field
+                </small>
+              </div>
+            </div>
+            <div class="text-center mt-lg-3">
+              <button type="submit"
+                      [class.invalid]="submitted && loginForm.invalid"
+                      class="my-btn w-100">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label>
-          <span class="input-placeholder">Password</span>
-          <input appPlaceholderTranslate type="password" formControlName="password">
-        </label>
-      </div>
-      <button
-        type="submit"
-        class="btn login-btn"
-        [class.valid]="!invalidForm"
-        [class.invalid]="invalidForm"
-        [disabled]="showLoader"
-      >
-        <span *ngIf="!showLoader;else loader" class="login-span">Log In</span>
-        <ng-template #loader>
-          <app-loader [size]="'sm'"></app-loader>
-        </ng-template>
-      </button>
-    </form>
-    <div class="error-msg"
-         *ngIf="errorMessage"
-         (click)="errorMessage = ''"
-    >
-      {{errorMessage | titlecase}}
+    </div>
+    <div class="col-sm-4">
     </div>
   </div>
 </main>

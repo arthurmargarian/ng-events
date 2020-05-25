@@ -7,6 +7,7 @@ import {SingleEventComponent} from './components/single-event/single-event.compo
 import {LoaderComponent} from './components/loader/loader.component';
 import {PlaceholderTranslateDirective} from './directives/placeholder-translate.directive';
 import {HeaderComponent} from './components/header/header.component';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,6 @@ import {HeaderComponent} from './components/header/header.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     HttpClientModule,
   ],
   exports: [
@@ -28,7 +28,6 @@ import {HeaderComponent} from './components/header/header.component';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     PlaceholderTranslateDirective,
   ]
 })

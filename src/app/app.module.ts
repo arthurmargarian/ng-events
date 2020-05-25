@@ -10,6 +10,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {JwtInterceptorService} from './services/jwt-interceptor.service';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,14 @@ import {JwtInterceptorService} from './services/jwt-interceptor.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     AppRoutingModule,
     SharedModule,
     GuestModule,
     UserModule,
     AdminModule,
+    ToastrModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}],
   exports: [],
