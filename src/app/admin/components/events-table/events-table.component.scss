@@ -1,123 +1,3 @@
-main {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 80px;
-
-  .container {
-    background: rgba(71, 88, 106, 0.9);
-    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-
-    .span-heading {
-      display: inline-block;
-      font-size: 25px;
-      color: rgb(255, 255, 255);
-      padding: 20px 15px;
-    }
-
-    .span-create {
-      padding-top: 18px;
-      padding-right: 15px;
-      float: right;
-    }
-
-    .btn-create {
-      padding: 10px 20px;
-    }
-
-    .btn-create:hover {
-      background-color: rgba(0, 255, 0, 0.2) !important;
-    }
-
-    table {
-      position: relative;
-      border-radius: 10px;
-      width: 100%;
-
-      td, th {
-        padding-left: 15px;
-        text-align: left;
-      }
-
-      .desc {
-        word-break: break-all;
-      }
-
-      th {
-        height: 60px;
-        background: rgba(32, 41, 58, 0.8);
-        font-size: 18px;
-        color: rgb(255, 255, 255);
-        font-weight: normal;
-      }
-
-      tbody tr {
-        height: 50px;
-        font-size: 15px;
-        color: rgba(255, 255, 255, 0.8);
-        background: rgba(32, 41, 58, 0.5);
-        font-weight: normal;
-
-        .btn {
-          padding: 7px 15px;
-          margin: 5px 10px;
-        }
-
-        .btn-edit:hover {
-          background-color: rgba(0, 255, 0, 0.2) !important;
-        }
-
-        .btn-delete:hover {
-          background-color: rgba(255, 0, 0, 0.3) !important;
-        }
-      }
-
-      tbody tr:nth-child(even) {
-        background: rgba(32, 41, 58, 0.4);
-      }
-    }
-
-    .pagination {
-      margin-bottom: 20px;
-      text-align: center;
-      width: 100%;
-    }
-
-    .page-btn {
-      cursor: pointer;
-      font-size: 16px;
-      padding: 5px 10px;
-      background: rgba(71, 88, 106, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 0 0 5px 5px;
-      border-top: 0;
-
-      &.active {
-        background: rgba(31, 43, 62, 0.6) !important;
-      }
-
-      &.disabled:hover {
-        background: rgba(255, 0, 0, 0.2) !important;
-      }
-    }
-
-    .page-btn:hover {
-      background: rgb(31, 43, 62) !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      border-top: none !important;
-      box-shadow: none !important;
-    }
-
-    .page-btn:active {
-      box-shadow: none;
-      border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      border-top: none !important;
-    }
-  }
-}
 
 .table-loader {
   display: block;
@@ -125,4 +5,60 @@ main {
   width: 235px;
 }
 
+.table-dark {
+  background: rgba(71, 88, 106, 0.9);
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px 5px 0 5px;
+  margin-top: 100px;
+  border: none;
 
+  th {
+    border: none;
+  }
+}
+
+.alert-dark {
+  margin: 70px auto;
+  background: rgba(71, 88, 106, 0.9);
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: none;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+
+.pagination {
+  .pagination-buttons {
+    margin-left: auto;
+
+    .my-btn {
+      cursor: pointer;
+      background: rgba(71, 88, 106, 0.8);
+      border-radius: 0 0 5px 5px;
+      border: none;
+
+      &.active {
+        background: rgba(31, 43, 62, 0.6) !important;
+      }
+
+      &:hover {
+        background: rgba(16, 44, 73, 0.8);
+        box-shadow: none;
+      }
+
+      &:active {
+        box-shadow: none;
+      }
+    }
+
+    .page-btn {
+      &.active {
+        background: rgba(31, 43, 62, 0.6) !important;
+      }
+
+      &.disabled:hover {
+        background: rgba(255, 0, 0, 0.4) !important;
+      }
+    }
+  }
+}

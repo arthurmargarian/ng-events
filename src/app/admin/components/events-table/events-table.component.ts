@@ -42,6 +42,7 @@ export class EventsTableComponent implements OnInit, DoCheck {
   }
 
   editEvent(currentEvent) {
+    console.log(currentEvent);
     this.modalService.open('edit', this);
     this.currentEvent = currentEvent;
   }

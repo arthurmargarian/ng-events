@@ -1,68 +1,72 @@
 <main>
-  <div class="container">
-    <span class="span-heading">Events List</span>
-    <span class="span-create">
-      <button class="btn btn-create" (click)="createEvent()">Create Event</button>
-    </span>
-    <div class="table" *ngIf="!showLoader;else loader">
+  <div class="container" *ngIf="!showLoader; else loader">
+    <!--Events Table START-->
+    <table class="table table-hover table-dark mb-0" *ngIf="totalPageCount !== 0; else noEvents">
+      <thead>
+      <tr>
+        <th scope="col" style="width: 15%">Name</th>
+        <th scope="col" style="width: 35%">Description</th>
+        <th scope="col" style="width: 20%">Date</th>
+        <th scope="col" style="width: 15%">Event Type</th>
+        <th scope="col" style="width: 15%">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let event of limitedEvents">
+        <td>{{event.name}}</td>
+        <td><span class="desc">{{event.description}}</span></td>
+        <td>{{event.date}}</td>
+        <td>{{eventTypes[event.eventType - 1].type}}</td>
+        <td>
+          <button class="my-btn" (click)='editEvent(event)'>Edit</button>
+          <button class="my-btn" (click)="deleteEvent(event)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <!--Events Table END-->
 
-      <table *ngIf="totalPageCount !== 0;else noEvents">
-        <thead>
-        <tr class="event-headings">
-          <th>Name</th>
-          <th>Description</th>
-          <th>Date</th>
-          <th>Event Type</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let event of limitedEvents">
-          <td>{{event.name}}</td>
-          <td><span class="desc">{{event.description}}</span></td>
-          <td>{{event.date}}</td>
-          <td>{{eventTypes[event.eventType - 1].type}}</td>
-          <td>
-            <button class="btn btn-edit" (click)='editEvent(event)'>Edit</button>
-            <button class="btn btn-delete" (click)="deleteEvent(event)">Delete</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <ng-template #noEvents>
-        <h2 class="no-event-msg">No Event To Show</h2>
-      </ng-template>
-      <div *ngIf="totalPageCount !== 0" class="pagination">
-        <button
-          class="btn page-btn"
-          [class.disabled]="currentPage==1"
-          (click)="getCurrentPageEvents(currentPage-1,eventCountLimit)"
-          [disabled]="currentPage==1"
-        >
-          Prev
-        </button>
-        <button
-          *ngFor="let page of pages"
-          class="btn page-btn"
-          [class.active]='page==currentPage'
-          (click)="getCurrentPageEvents(page,eventCountLimit)"
-        >
-          {{page}}
-        </button>
-        <button
-          class="btn page-btn"
-          [class.disabled]="currentPage==totalPageCount"
-          (click)="getCurrentPageEvents(currentPage+1,eventCountLimit)"
-          [disabled]="currentPage==totalPageCount"
-        >
-          Next
-        </button>
+    <!--Pagination START-->
+    <div *ngIf="totalPageCount !== 0" class="pagination">
+      <div class="pagination-buttons">
+      <button
+        class="my-btn page-btn"
+        [class.disabled]="currentPage === 1"
+        (click)="getCurrentPageEvents(currentPage - 1, eventCountLimit)"
+        [disabled]="currentPage === 1"
+      >
+        Prev
+      </button>
+      <button
+        *ngFor="let page of pages"
+        class="my-btn page-btn"
+        [class.active]='page==currentPage'
+        (click)="getCurrentPageEvents(page,eventCountLimit)"
+      >
+        {{page}}
+      </button>
+      <button
+        class="my-btn page-btn"
+        [class.disabled]="currentPage === totalPageCount"
+        (click)="getCurrentPageEvents(currentPage + 1, eventCountLimit)"
+        [disabled]="currentPage === totalPageCount"
+      >
+        Next
+      </button>
       </div>
     </div>
-    <ng-template #loader>
-      <app-loader [size]="'lg'" class="table-loader"></app-loader>
-    </ng-template>
+    <!--Pagination END-->
   </div>
+  <!--Loading / No Data  START-->
+  <ng-template #noEvents>
+    <div class="alert alert-dark" role="alert">
+      <h2 class="no-event-msg p-lg-4">No Event To Show</h2>
+    </div>
+  </ng-template>
+  <ng-template #loader>
+    <app-loader [size]="'lg'" class="table-loader"></app-loader>
+  </ng-template>
+  <!--Loading / No Data END-->
 </main>
 <app-delete-modal id="delete"></app-delete-modal>
 <app-form-modal id="edit" [currentEvent]="currentEvent"></app-form-modal>

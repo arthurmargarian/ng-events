@@ -74,3 +74,17 @@ body {
     background: rgba(255, 0, 0, 0.6);
   }
 }
+
+.no-event-msg{
+  text-align: center;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.alert-dark{
+  margin: 70px auto;
+  background: rgba(71, 88, 106, 0.9);
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: none;
+  color: rgba(255, 255, 255, 0.95);
+}
