@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.fullName = localStorage.getItem('fullName');
   }
-  private logout():void {
+
+  private logOut(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
   }

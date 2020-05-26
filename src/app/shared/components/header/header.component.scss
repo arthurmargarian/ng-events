@@ -1,22 +1,10 @@
-header {
-  width: 100%;
-  background: rgba(71, 88, 106, 0.7);
-  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
-  color: rgb(255, 255, 255);
+.navbar-dark{
+    background: rgba(71, 88, 106, 0.7) !important;
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5) !important;
+}
 
-  .container {
-    position: relative;
-    padding: 12px 0;
-  }
-
-  .logout-btn {
-    position: absolute;
-    right: 0;
-    bottom: 17%;
-    padding: 5px 12px;
-    font-size: 15px;
-    &:hover {
-      background: rgba(255, 0, 0, 0.3) !important;
-    }
+.my-btn{
+  &:hover{
+    background: rgba(255, 0, 0, 0.6);
   }
 }
