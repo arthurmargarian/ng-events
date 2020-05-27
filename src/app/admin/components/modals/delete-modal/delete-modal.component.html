@@ -1,9 +1,0 @@
-<div class="modal" *ngIf="dataReady">
-  <div class="modal-body">
-    <h2>Are you sure?</h2>
-    <p>Do you really want to delete  <span class="event-name">{{event.name}}</span></p>
-    <button class="btn btn-cancel" (click)="closeModal('delete');">Cancel</button>
-    <button class="btn btn-delete" (click)="deleteEvent(event.id);">Delete</button>
-  </div>
-</div>
-<div class="modal-background"></div>

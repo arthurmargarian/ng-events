@@ -2,7 +2,20 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="container">
       <h4 class="navbar-brand">{{fullName}}</h4>
-      <button class="my-btn" (click)="logOut()">Log Out</button>
+      <button class="my-btn log-out" (click)="openModal(confirm)">Log Out</button>
     </div>
   </nav>
 </header>
+
+<ng-template #confirm let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title h-color">Log Out</h4>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to <span class="text-danger">Log Out</span>?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="my-btn" (click)="modal.close()">Cancel</button>
+    <button type="button" class="my-btn log-out" (click)="logOut()">Log Out</button>
+  </div>
+</ng-template>

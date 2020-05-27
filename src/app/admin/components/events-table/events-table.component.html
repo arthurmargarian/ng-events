@@ -3,7 +3,7 @@
     <!--Events Table START-->
     <div class="alert heading" role="alert">
       <span class="events-list-header">Events List</span>
-      <button class="my-btn create" (click)="openModal(create)">Create Event</button>
+      <button class="my-btn create" (click)="openModal(createUpdate)">Create Event</button>
     </div>
     <table class="table table-hover table-dark" *ngIf="totalPageCount !== 0; else noEvents">
       <thead>
@@ -22,8 +22,8 @@
         <td class="align-middle">{{event.date | date}}</td>
         <td>{{eventTypes[event.eventType - 1].type}}</td>
         <td class="align-middle">
-          <button class="my-btn edit">Edit</button>
-          <button class="my-btn delete">Delete</button>
+          <button class="my-btn edit" (click)="openModal(createUpdate, event)">Edit</button>
+          <button class="my-btn delete" (click)="openModal(confirm, event)">Delete</button>
         </td>
       </tr>
       </tbody>
@@ -71,7 +71,7 @@
 </main>
 
 
-<ng-template #create let-modal>
+<ng-template #createUpdate let-modal>
   <div class="modal-header">
     <h4 class="modal-title h-color">Create Event</h4>
   </div>
@@ -82,19 +82,20 @@
         <input type="text"
                class="form-control no-background"
                id="name"
-               [style.border]="(form.get('name').touched && (form.get('name').errors?.required || form.get('name').errors?.minlength)) ? '1px solid red' : '1px solid gray'"
+               [style.border]="(form.get('name').touched || submitted) && (form.get('name').errors?.required || form.get('name').errors?.minlength) ? '1px solid red' : '1px solid gray'"
                formControlName="name"
                placeholder="Enter Event Name">
         <div class="validation-message text-right">
           <small
-            *ngIf="form.get('name').touched && form.get('name').errors?.required"
+            *ngIf="(form.get('name').touched || submitted) && form.get('name').errors?.required"
             class="text-danger font-italic text-right">
             Required Field
           </small>
           <small
-            *ngIf="form.get('name').touched && form.get('name').errors?.minlength"
+            *ngIf="form.get('name').touched && (form.get('name').errors?.minlength || form.get('name').errors?.maxlength)"
             class="text-danger font-italic text-right">
-            Name length must be more 3 characters
+            Name length must be more 3 and less 20 characters
+            (Now: {{form.get('name').errors?.minlength ? form.get('name').errors?.minlength.actualLength :form.get('name').errors?.maxlength.actualLength}})
           </small>
         </div>
       </div>
@@ -102,21 +103,22 @@
         <label for="description">Description</label>
         <textarea class="form-control"
                   id="description"
+                  placeholder="Enter Description"
                   formControlName="description"
-                  [style.border]="(form.get('description').touched && (form.get('description').errors?.required || form.get('description').errors?.minlength)) ? '1px solid red' : '1px solid gray'"
+                  [style.border]=" ((form.get('description').touched || submitted ) && (form.get('description').errors?.required || form.get('description').errors?.minlength)) ? '1px solid red' : '1px solid gray'"
                   rows="2">
         </textarea>
         <div class="validation-message text-right">
           <small
-            *ngIf="form.get('description').touched && form.get('description').errors?.required"
+            *ngIf="(form.get('description').touched || submitted ) && form.get('description').errors?.required"
             class="text-danger font-italic text-right">
             Required Field
           </small>
           <small
-            *ngIf="form.get('description').touched && form.get('description').errors?.minlength"
+            *ngIf="form.get('description').touched &&  (form.get('description').errors?.minlength || form.get('description').errors?.maxlength )"
             class="text-danger font-italic text-right">
-            Description length must be more 20 characters
-            (Now: {{form.get('description').errors?.minlength.actualLength}})
+            Description length must be more 30 and less 100 characters
+            (Now: {{form.get('description').errors?.minlength ? form.get('description').errors?.minlength.actualLength :form.get('name').errors?.maxlength.actualLength}})
           </small>
         </div>
       </div>
@@ -124,7 +126,7 @@
         <label for="eventType">Event Type</label>
         <select class="form-control"
                 id="eventType"
-                [style.border]="form.get('eventType').touched && form.get('eventType').errors?.required  ? '1px solid red' : '1px solid gray'"
+                [style.border]="(form.get('eventType').touched || submitted) && form.get('eventType').errors?.required  ? '1px solid red' : '1px solid gray'"
                 formControlName="eventType">
           <option *ngFor="let eventType of eventTypes" value="{{eventType.value}}">
             {{eventType.type}}
@@ -132,7 +134,7 @@
         </select>
         <div class="validation-message text-right">
           <small
-            *ngIf="form.get('eventType').touched && form.get('eventType').errors?.required"
+            *ngIf="(form.get('eventType').touched || submitted) && form.get('eventType').errors?.required"
             class="text-danger font-italic text-right">
             Required Field
           </small>
@@ -147,6 +149,7 @@
                    name="dp"
                    type="text"
                    formControlName="date"
+                   [style.border]="((form.get('date').touched || submitted) && (form.get('date').errors?.required ||  (!date?.year || !date?.day || !date?.month))) ? '1px solid red' : '1px solid gray'"
                    ngbDatepicker
                    [minDate]="calendar.getToday()"
                    #d="ngbDatepicker">
@@ -158,7 +161,7 @@
         <button class="my-btn" style="float: right" (click)="selectToday()">Select Today</button>
         <div class="validation-message text-right">
           <small
-            *ngIf="form.get('date').touched && form.get('date').errors?.required"
+            *ngIf="(form.get('date').touched || submitted ) && form.get('date').errors?.required"
             class="text-danger font-italic text-right">
             Required Field
           </small>
@@ -173,6 +176,21 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="my-btn delete" (click)="modal.close()">Cancel</button>
-    <button type="button" class="my-btn create" (click)="onCreateEvent()">Create</button>
+    <button type="button"
+            class="my-btn create"
+            (click)="isEdit? onEditEvent() : onCreateEvent()">{{isEdit ? "Edit" : "Create"}}</button>
+  </div>
+</ng-template>
+
+<ng-template #confirm let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title h-color">Delete Event</h4>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete <span class="text-info">{{currentEvent.name}}</span> event?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="my-btn" (click)="modal.close()">Cancel</button>
+    <button type="button" class="my-btn delete" (click)="onDeleteEvent()">Delete</button>
   </div>
 </ng-template>

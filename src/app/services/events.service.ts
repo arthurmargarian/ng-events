@@ -19,6 +19,8 @@ export class EventsService {
     return this.http.get(`${this.baseURL}/events`, {
       observe: 'response',
       params: {
+        '_sort':'id',
+        '_order':'desc',
         '_page': page,
         '_limit': limit
       }
@@ -37,7 +39,7 @@ export class EventsService {
     return this.http.delete(`${this.baseURL}/events/${id}`);
   }
 
-  editEvent(body,id) {
-    return this.http.put(`${this.baseURL}/events/${id}`, body);
+  updateEvent(body) {
+    return this.http.put(`${this.baseURL}/events/${body.id}`, body);
   }
 }
