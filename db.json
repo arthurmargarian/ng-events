@@ -33,32 +33,18 @@
       "id": 4
     },
     {
-      "name": "Name 1",
       "description": "lorem ipsum lorem ipsum lorem ipsum lorem ipsumaa",
-      "date": "2020-06-29T20:00:00.000Z",
+      "date": "2020-06-26T20:00:00.000Z",
       "eventType": "1",
+      "name": "Name 1",
       "id": 5
     },
     {
-      "description": "bbb a bbb a bbb a bbb a bbb a bbb a bbb a ",
-      "date": "2020-05-30T20:00:00.000Z",
-      "eventType": "2",
-      "name": "bbb",
-      "id": 6
-    },
-    {
-      "name": "New",
-      "description": "asd asd asd asd asd asd asd asd ",
+      "description": "asd asd asd asd asd asd asd asd 666666666666666666666666666666666666666666666666666666666",
       "date": "2020-05-27T20:00:00.000Z",
       "eventType": "2",
+      "name": "New",
       "id": 7
-    },
-    {
-      "name": "asd",
-      "description": "asd xcv asd xcv asd xcv asd xcv asd xcv asd xcv ",
-      "date": "2022-05-13T20:00:00.000Z",
-      "eventType": "2",
-      "id": 8
     }
   ],
   "eventTypes": [

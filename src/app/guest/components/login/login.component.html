@@ -46,7 +46,7 @@
             </div>
             <div class="text-center mt-lg-3">
               <button type="submit"
-                      [class.invalid]="!validCredentials ||(submitted && loginForm.invalid)"
+                      [class.invalid]="!validCredentials ||((submitted || loginForm.touched) && loginForm.invalid)"
                       class="my-btn w-100">
                 Submit
               </button>

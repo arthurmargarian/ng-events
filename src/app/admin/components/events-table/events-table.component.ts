@@ -137,9 +137,10 @@ export class EventsTableComponent implements OnInit {
     this.eventsService.updateEvent(event)
       .subscribe((res) => {
         this.modalService.dismissAll();
-        this.toastr.success(`Event ${this.currentEvent.name} Successfully Edited.`, 'Edit');
+        this.toastr.success(`Event "${this.currentEvent.name}" Successfully Edited.`, 'Edit');
         this.currentEvent = null;
         this.form.reset();
+        this.submitted = false;
         this.getCurrentPageEvents(this.currentPage, this.eventCountLimit);
       });
   }
@@ -148,7 +149,7 @@ export class EventsTableComponent implements OnInit {
     this.eventsService.deleteEvent(this.currentEvent.id)
       .subscribe(() => {
         this.modalService.dismissAll();
-        this.toastr.info(`Event ${this.currentEvent.name} Successfully Deleted.`, 'Delete');
+        this.toastr.info(`Event "${this.currentEvent.name}" Successfully Deleted.`, 'Delete');
         this.currentEvent = null;
         this.getCurrentPageEvents(this.currentPage, this.eventCountLimit);
       });
