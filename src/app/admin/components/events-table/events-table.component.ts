@@ -1,61 +1,95 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpResponse} from '@angular/common/http';
 import {IEvent, IEventType} from '../../../shared/interfaces';
 import {EventsService} from '../../../services/events.service';
-import {ModalService} from '../../../services/modal.service';
+import {NgbCalendar, NgbDateStruct, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-events-table',
   templateUrl: './events-table.component.html',
   styleUrls: ['./events-table.component.scss']
 })
-export class EventsTableComponent implements OnInit, DoCheck {
+export class EventsTableComponent implements OnInit {
+
+  public limitedEvents: IEvent[];
+  public currentPage: number = 1;
+  public eventCountLimit: number = 6;
+  public form: FormGroup;
+  public date: NgbDateStruct;
   private eventTypes: IEventType[];
   private totalPageCount: number;
   private pages = [];
   private showLoader: boolean = true;
-  limitedEvents: IEvent[];
-  currentPage: number = 1;
-  eventCountLimit: number = 4;
-  currentEvent: IEvent;
 
-  constructor(private eventsServices: EventsService, private modalService: ModalService) {
+  constructor(private eventsService: EventsService,
+              private modalService: NgbModal,
+              private calendar: NgbCalendar,
+              private toastr: ToastrService,
+              public fb: FormBuilder) {
   }
 
-  ngOnInit() {
-    this.eventsServices.getEventTypes().subscribe((res: IEventType[]) => {
-      this.eventTypes = res;
-    });
+  ngOnInit():void {
+    this.initForm();
+    this.getEventTypes();
     this.getCurrentPageEvents(this.currentPage, this.eventCountLimit);
+
   }
 
-  ngDoCheck(): void {
-    this.showLoader = !Boolean(this.limitedEvents && this.eventTypes);
-  }
-
-  createEvent() {
-    this.modalService.open('create', this);
-  }
-
-  deleteEvent(event) {
-    this.modalService.open('delete', this, event);
-  }
-
-  editEvent(currentEvent) {
-    console.log(currentEvent);
-    this.modalService.open('edit', this);
-    this.currentEvent = currentEvent;
-  }
-
-  getCurrentPageEvents(currentPage, eventCountLimit) {
-    this.eventsServices.getLimitedEvents(currentPage, eventCountLimit).subscribe((res: HttpResponse<any>) => {
-      this.limitedEvents = res.body;
-      this.pages = [];
-      this.totalPageCount = Math.ceil((+res.headers.get('X-Total-Count') / eventCountLimit));
-      this.currentPage = currentPage;
-      for (let i = 0; i < this.totalPageCount; i++) {
-        this.pages.push(i + 1);
-      }
+  private initForm(): void {
+    this.form = this.fb.group({
+      'name': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'description': ['', Validators.compose([Validators.required, Validators.minLength(20)])],
+      'date': ['', Validators.compose([Validators.required])],
+      'eventType': ['', Validators.compose([Validators.required])],
     });
+  }
+
+  private getEventTypes(): void {
+    this.eventsService.getEventTypes()
+      .subscribe((res: IEventType[]) => {
+        this.eventTypes = res;
+      });
+  }
+
+  public openModal(content):void {
+    this.modalService.open(content, {windowClass: 'dark-modal', centered: true});
+  }
+
+  public selectToday(): void {
+    this.date = this.calendar.getToday();
+  }
+
+  public getCurrentPageEvents(currentPage, eventCountLimit): void {
+    this.eventsService.getLimitedEvents(currentPage, eventCountLimit)
+      .subscribe((res: HttpResponse<any>) => {
+        this.limitedEvents = res.body;
+        this.pages = [];
+        this.totalPageCount = Math.ceil((+res.headers.get('X-Total-Count') / eventCountLimit));
+        this.currentPage = currentPage;
+        for (let i = 0; i < this.totalPageCount; i++) {
+          this.pages.push(i + 1);
+        }
+        this.showLoader = false;
+      });
+  }
+
+  public onCreateEvent(): void {
+    if (this.form.valid) {
+      const formData = {...this.form.value};
+      formData.date = new Date(formData.date.year, formData.date.month, formData.date.day).toJSON();
+      this.createEvent(formData);
+    }
+  }
+
+  private createEvent(formData) {
+    this.eventsService.createEvent(formData)
+      .subscribe(res => {
+        this.modalService.dismissAll();
+        this.form.reset();
+        this.getCurrentPageEvents(this.currentPage, this.eventCountLimit);
+        this.toastr.success('New Event Successfully Created', 'Create');
+      });
   }
 }

@@ -15,7 +15,7 @@ export class EventsService {
     return this.http.get(`${this.baseURL}/events`);
   }
 
-  getLimitedEvents(page, limit = '4') {
+  getLimitedEvents(page, limit = '5') {
     return this.http.get(`${this.baseURL}/events`, {
       observe: 'response',
       params: {

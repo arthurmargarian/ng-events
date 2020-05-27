@@ -1,19 +1,29 @@
-
-.table-loader {
-  display: block;
-  margin: 35px auto;
-  width: 235px;
-}
-
 .table-dark {
   background: rgba(71, 88, 106, 0.9);
   box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 5px 5px 0 5px;
-  margin-top: 100px;
+  border-radius: 0 0 0 5px;
   border: none;
+  margin-bottom: 0;
 
   th {
     border: none;
+    border-bottom: 2px solid rgb(130, 160, 179);
+    color: rgb(255, 255, 255);
+  }
+}
+
+.heading {
+  margin: 100px auto 0;
+  background: rgb(71, 88, 106);
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px 5px 0 0;
+  border: none;
+  color: rgb(255, 255, 255);
+  text-align: left;
+
+  .events-list-header {
+    font-size: 25px;
+    text-align: left;
   }
 }
 
@@ -33,7 +43,7 @@
 
     .my-btn {
       cursor: pointer;
-      background: rgba(71, 88, 106, 0.8);
+      background: rgba(71, 88, 106, 0.9);
       border-radius: 0 0 5px 5px;
       border: none;
 
@@ -61,4 +71,56 @@
       }
     }
   }
+}
+
+.table-loader {
+  display: block;
+  margin: 35px auto;
+  width: 235px;
+}
+
+.my-btn {
+  &.edit {
+    margin-right: 10px;
+
+    &:hover {
+      background: rgba(0, 81, 0, 0.6);
+    }
+  }
+
+  &.delete {
+    &:hover {
+      background: rgba(160, 0, 0, 0.6);
+    }
+  }
+
+  &.create {
+    float: right;
+
+    &:hover {
+      background: rgba(0, 81, 0, 0.6);
+    }
+  }
+
+  &.calendar {
+    border-radius: 0 5px 5px 0;
+  }
+}
+
+//
+//.modal-header,.modal-body, .modal-footer{
+//  background: rgba(71, 88, 106, 0.9) !important;
+//}
+
+ngb-timepicker.changeSize .ngb-tp-input-container {
+  width: 2em;
+}
+
+ngb-timepicker.changeSize .ngb-tp-input {
+  padding: 0;
+  font-size: 10px;
+}
+
+.ngb-tp-hour, .ngb-tp-meridian, .ngb-tp-minute, .ngb-tp-second {
+  align-items: inherit;
 }

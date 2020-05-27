@@ -1,25 +1,29 @@
 <main>
   <div class="container" *ngIf="!showLoader; else loader">
     <!--Events Table START-->
-    <table class="table table-hover table-dark mb-0" *ngIf="totalPageCount !== 0; else noEvents">
+    <div class="alert heading" role="alert">
+      <span class="events-list-header">Events List</span>
+      <button class="my-btn create" (click)="openModal(create)">Create Event</button>
+    </div>
+    <table class="table table-hover table-dark" *ngIf="totalPageCount !== 0; else noEvents">
       <thead>
       <tr>
-        <th scope="col" style="width: 15%">Name</th>
-        <th scope="col" style="width: 35%">Description</th>
-        <th scope="col" style="width: 20%">Date</th>
-        <th scope="col" style="width: 15%">Event Type</th>
+        <th scope="col" style="width: 18%">Name</th>
+        <th scope="col" style="width: 40%">Description</th>
+        <th scope="col" style="width: 15%">Date</th>
+        <th scope="col" style="width: 12%">Event Type</th>
         <th scope="col" style="width: 15%">Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let event of limitedEvents">
-        <td>{{event.name}}</td>
-        <td><span class="desc">{{event.description}}</span></td>
-        <td>{{event.date}}</td>
+        <td class="align-middle">{{event.name}}</td>
+        <td class="align-middle"><span class="desc">{{event.description}}</span></td>
+        <td class="align-middle">{{event.date | date}}</td>
         <td>{{eventTypes[event.eventType - 1].type}}</td>
-        <td>
-          <button class="my-btn" (click)='editEvent(event)'>Edit</button>
-          <button class="my-btn" (click)="deleteEvent(event)">Delete</button>
+        <td class="align-middle">
+          <button class="my-btn edit">Edit</button>
+          <button class="my-btn delete">Delete</button>
         </td>
       </tr>
       </tbody>
@@ -29,30 +33,27 @@
     <!--Pagination START-->
     <div *ngIf="totalPageCount !== 0" class="pagination">
       <div class="pagination-buttons">
-      <button
-        class="my-btn page-btn"
-        [class.disabled]="currentPage === 1"
-        (click)="getCurrentPageEvents(currentPage - 1, eventCountLimit)"
-        [disabled]="currentPage === 1"
-      >
-        Prev
-      </button>
-      <button
-        *ngFor="let page of pages"
-        class="my-btn page-btn"
-        [class.active]='page==currentPage'
-        (click)="getCurrentPageEvents(page,eventCountLimit)"
-      >
-        {{page}}
-      </button>
-      <button
-        class="my-btn page-btn"
-        [class.disabled]="currentPage === totalPageCount"
-        (click)="getCurrentPageEvents(currentPage + 1, eventCountLimit)"
-        [disabled]="currentPage === totalPageCount"
-      >
-        Next
-      </button>
+        <button
+          class="my-btn page-btn"
+          [class.disabled]="currentPage === 1"
+          (click)="getCurrentPageEvents(currentPage - 1, eventCountLimit)"
+          [disabled]="currentPage === 1">
+          Prev
+        </button>
+        <button
+          *ngFor="let page of pages"
+          class="my-btn page-btn"
+          [class.active]='page === currentPage'
+          (click)="getCurrentPageEvents(page, eventCountLimit)">
+          {{page}}
+        </button>
+        <button
+          class="my-btn page-btn"
+          [class.disabled]="currentPage === totalPageCount"
+          (click)="getCurrentPageEvents(currentPage + 1, eventCountLimit)"
+          [disabled]="currentPage === totalPageCount">
+          Next
+        </button>
       </div>
     </div>
     <!--Pagination END-->
@@ -68,6 +69,110 @@
   </ng-template>
   <!--Loading / No Data END-->
 </main>
-<app-delete-modal id="delete"></app-delete-modal>
-<app-form-modal id="edit" [currentEvent]="currentEvent"></app-form-modal>
-<app-form-modal id="create"></app-form-modal>
+
+
+<ng-template #create let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title h-color">Create Event</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <div class="form-group m-0">
+        <label for="name" class="h-color">Name</label>
+        <input type="text"
+               class="form-control no-background"
+               id="name"
+               [style.border]="(form.get('name').touched && (form.get('name').errors?.required || form.get('name').errors?.minlength)) ? '1px solid red' : '1px solid gray'"
+               formControlName="name"
+               placeholder="Enter Event Name">
+        <div class="validation-message text-right">
+          <small
+            *ngIf="form.get('name').touched && form.get('name').errors?.required"
+            class="text-danger font-italic text-right">
+            Required Field
+          </small>
+          <small
+            *ngIf="form.get('name').touched && form.get('name').errors?.minlength"
+            class="text-danger font-italic text-right">
+            Name length must be more 3 characters
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control"
+                  id="description"
+                  formControlName="description"
+                  [style.border]="(form.get('description').touched && (form.get('description').errors?.required || form.get('description').errors?.minlength)) ? '1px solid red' : '1px solid gray'"
+                  rows="2">
+        </textarea>
+        <div class="validation-message text-right">
+          <small
+            *ngIf="form.get('description').touched && form.get('description').errors?.required"
+            class="text-danger font-italic text-right">
+            Required Field
+          </small>
+          <small
+            *ngIf="form.get('description').touched && form.get('description').errors?.minlength"
+            class="text-danger font-italic text-right">
+            Description length must be more 20 characters
+            (Now: {{form.get('description').errors?.minlength.actualLength}})
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="eventType">Event Type</label>
+        <select class="form-control"
+                id="eventType"
+                [style.border]="form.get('eventType').touched && form.get('eventType').errors?.required  ? '1px solid red' : '1px solid gray'"
+                formControlName="eventType">
+          <option *ngFor="let eventType of eventTypes" value="{{eventType.value}}">
+            {{eventType.type}}
+          </option>
+        </select>
+        <div class="validation-message text-right">
+          <small
+            *ngIf="form.get('eventType').touched && form.get('eventType').errors?.required"
+            class="text-danger font-italic text-right">
+            Required Field
+          </small>
+        </div>
+      </div>
+      <div class="form-inline">
+        <div class="form-group mr-auto">
+          <div class="input-group">
+            <input class="form-control"
+                   placeholder="yyyy-mm-dd"
+                   [(ngModel)]="date"
+                   name="dp"
+                   type="text"
+                   formControlName="date"
+                   ngbDatepicker
+                   [minDate]="calendar.getToday()"
+                   #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="my-btn calendar" (click)="d.toggle()" type="button">Calendar</button>
+            </div>
+          </div>
+        </div>
+        <button class="my-btn" style="float: right" (click)="selectToday()">Select Today</button>
+        <div class="validation-message text-right">
+          <small
+            *ngIf="form.get('date').touched && form.get('date').errors?.required"
+            class="text-danger font-italic text-right">
+            Required Field
+          </small>
+          <small
+            *ngIf="form.get('date').touched && !form.get('date').errors?.required && (!date?.year || !date?.day || !date?.month)"
+            class="text-danger font-italic text-right">
+            Date is not valid
+          </small>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="my-btn delete" (click)="modal.close()">Cancel</button>
+    <button type="button" class="my-btn create" (click)="onCreateEvent()">Create</button>
+  </div>
+</ng-template>

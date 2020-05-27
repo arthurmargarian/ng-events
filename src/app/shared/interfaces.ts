@@ -1,3 +1,5 @@
+import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
+
 export interface ILoginRes {
   access_token: string,
   user: IUser
@@ -16,7 +18,7 @@ export interface IEvent {
   id?: number,
   name: string,
   description: string,
-  date: string,
+  date: NgbDate,
   eventType: number,
   image?: string,
 }

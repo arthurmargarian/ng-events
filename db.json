@@ -22,21 +22,21 @@
       "id": 1,
       "name": "Event Name1",
       "eventType": 1,
-      "date": "Fri Dec 13 2019 12:56:53 GMT+0400 (Armenia Standard Time)",
+      "date": "2020-05-11T11:11",
       "description": "Event Descriptionnnn Event Descriptionnnn Event Descriptionnnnasd"
     },
     {
       "id": 3,
       "name": "Event Name3",
       "eventType": 1,
-      "date": "Fri Dec 11 2019 12:56:53 GMT+0400 (Armenia Standard Time)",
+      "date": "2020-05-11T11:11",
       "description": "Event Descriptiona asdEvent Descriptiona asdEvent Descriptiona asdEvent Descriptiona asd"
     },
     {
       "id": 4,
       "name": "Event Name4",
       "description": "Event Description",
-      "date": "Fri Dec 23 2019 12:56:53 GMT+0400 (Armenia Standard Time)",
+      "date": "2020-05-11T11:11",
       "eventType": 1,
       "image": "filingIds.849d48669cc63bafd6ac831ab5271598.txt"
     },
@@ -44,7 +44,7 @@
       "id": 5,
       "name": "Event Name5",
       "description": "Event Description",
-      "date": "Fri Dec 30 2019 12:56:53 GMT+0400 (Armenia Standard Time)",
+      "date": "2020-05-11T11:11",
       "eventType": 2,
       "image": "filingIds.849d48669cc63bafd6ac831ab5271598.txt"
     },
@@ -52,7 +52,7 @@
       "id": 6,
       "name": "Event Name6",
       "description": "Event Description",
-      "date": "Fri Dec 25 2019 12:56:53 GMT+0400 (Armenia Standard Time)",
+      "date": "2020-05-11T11:11",
       "eventType": 2,
       "image": "filingIds.849d48669cc63bafd6ac831ab5271598.txt"
     },
@@ -60,7 +60,7 @@
       "id": 7,
       "name": "Event Name7",
       "description": "Event Description",
-      "date": "Fri Dec 26 2019 12:56:53 GMT+0400 (Armenia Standard Time)",
+      "date": "2020-05-11T11:11",
       "eventType": 3,
       "image": "filingIds.849d48669cc63bafd6ac831ab5271598.txt"
     },
@@ -77,6 +77,20 @@
       "date": "2008-01-11T11:02",
       "eventType": "2",
       "id": 9
+    },
+    {
+      "name": "Arthur Margarian",
+      "description": "Arthur MargarianArthur MargarianArthur Margarian",
+      "date": "2020-06-26T20:00:00.000Z",
+      "eventType": "2",
+      "id": 11
+    },
+    {
+      "name": "Some Event",
+      "description": "Descriptio nDescription Description Description",
+      "date": "2020-06-30T20:00:00.000Z",
+      "eventType": "2",
+      "id": 12
     }
   ],
   "eventTypes": [

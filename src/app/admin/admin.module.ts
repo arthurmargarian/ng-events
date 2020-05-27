@@ -4,6 +4,7 @@ import {AdminDashboardComponent} from './components/dashboard/dashboard.componen
 import {DeleteModalComponent} from './components/modals/delete-modal/delete-modal.component';
 import {FormModalComponent} from './components/modals/form-modal/form-modal.component';
 import {SharedModule} from '../shared/shared.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {SharedModule} from '../shared/shared.module';
     FormModalComponent,
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    FormsModule,
   ],
   exports: [],
   providers: []
