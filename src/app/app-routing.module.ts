@@ -8,17 +8,23 @@ import {isNotAdminGuard} from './guards/is-not-admin.guard';
 import {AdminDashboardComponent} from './admin/components/dashboard/dashboard.component';
 import {UserDashboardComponent} from './user/components/dashboard/dashboard.component';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {RegisterComponent} from './guest/components/register/register.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [GuestGuard]
   },
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [GuestGuard]
   },
   {
     path: 'events-grid',

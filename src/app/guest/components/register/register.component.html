@@ -1,3 +1,171 @@
-<p>
-  register works!
-</p>
+<main class="container">
+  <div class="row m-0 vh-100">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 align-self-center mb-auto mt-5">
+      <div class="card user-form-card p-lg-4" style="width: 25rem;">
+        <div class="card-header mb-4 h-color text-center no-background"><h3>Sign Up</h3></div>
+        <div class="card-body p-0">
+          <form
+            [formGroup]="registerForm"
+            (ngSubmit)="onSubmit()">
+            <div class="form-group m-0">
+              <label for="name" class="h-color">Name</label>
+              <input type="text"
+                     [style.border]="((registerForm.get('name').touched || submitted) && registerForm.get('name').errors?.required)? '1px solid red' : '1px solid gray'"
+                     formControlName="name"
+                     class="form-control no-background"
+                     id="name"
+                     placeholder="Enter Name">
+              <div class="validation-message text-right">
+                <small
+                  *ngIf="(registerForm.get('name').touched || submitted) && registerForm.get('name').errors?.required"
+                  class="text-danger font-italic text-right">
+                  Required Field
+                </small>
+              </div>
+            </div>
+            <div class="form-group m-0">
+              <label for="srName" class="h-color">Sr Name</label>
+              <input type="text"
+                     [style.border]="(registerForm.get('srName').touched || submitted) && registerForm.get('srName').errors?.required? '1px solid red' : '1px solid gray'"
+                     formControlName="srName"
+                     class="form-control no-background"
+                     id="srName"
+                     placeholder="Enter Sr Name">
+              <div class="validation-message text-right">
+                <small
+                  *ngIf="(registerForm.get('srName').touched || submitted) && registerForm.get('srName').errors?.required"
+                  class="text-danger font-italic text-right">
+                  Required Field
+                </small>
+              </div>
+            </div>
+            <div class="form-group m-0">
+              <label for="email" class="h-color">Email address</label>
+              <input type="email"
+                     [style.border]="isEmailUsed || ((registerForm.get('email').touched || submitted)
+                                     && (registerForm.get('email').errors?.required || registerForm.get('email').errors?.email)) ? '1px solid red' : '1px solid gray'"
+                     (input)="onEmailChanges()"
+                     formControlName="email"
+                     class="form-control no-background"
+                     id="email"
+                     placeholder="Enter Email">
+              <div class="validation-message text-right">
+                <small
+                  *ngIf="(registerForm.get('email').touched || submitted) && registerForm.get('email').errors?.required"
+                  class="text-danger font-italic text-right">
+                  Required Field
+                </small>
+                <small
+                  *ngIf="(registerForm.get('email').touched || submitted) && registerForm.get('email').errors?.email"
+                  class="text-danger font-italic text-right">
+                  Email is not valid
+                </small>
+                <small
+                  *ngIf="isEmailUsed"
+                  class="text-danger font-italic text-right">
+                  This Email is Already in Use
+                </small>
+              </div>
+            </div>
+            <div class="form-group m-0">
+              <label for="password" class="h-color">Password</label>
+              <input type="password"
+                     [style.border]="(registerForm.get('password').touched || submitted) &&
+                                     (registerForm.get('password').errors?.required || registerForm.get('password').errors?.minlength) ? '1px solid red' : '1px solid gray'"
+                     (input)="onPasswordChanges()"
+                     formControlName="password"
+                     class="form-control no-background"
+                     id="password"
+                     placeholder="Enter Password">
+              <div class="validation-message text-right">
+                <small
+                  *ngIf="(registerForm.get('password').touched || submitted) && registerForm.get('password').errors?.required"
+                  class="text-danger font-italic text-right">
+                  Required Field
+                </small>
+                <small
+                  *ngIf="registerForm.get('password').touched && registerForm.get('password').errors?.minlength"
+                  class="text-danger font-italic text-right">
+                  Password length must be more then 6  characters
+                  (Now: {{registerForm.get('password').errors?.minlength.actualLength}})
+                </small>
+              </div>
+            </div>
+            <div class="form-group m-0">
+              <label for="confirmPassword" class="h-color">Confirm Password</label>
+              <input type="password"
+                     [style.border]="((registerForm.get('confirmPassword').touched || submitted ) && registerForm.get('confirmPassword').errors?.required) ||
+                                     (registerForm.get('confirmPassword').touched || submitted) && !isPasswordsMatch && registerForm.get('password').valid ? '1px solid red' : '1px solid gray'"
+                     (input)="onPasswordChanges()"
+                     formControlName="confirmPassword"
+                     class="form-control no-background"
+                     id="confirmPassword"
+                     placeholder="Confirm Password">
+              <div class="validation-message text-right">
+                <small
+                  *ngIf="(registerForm.get('confirmPassword').touched || submitted) && registerForm.get('confirmPassword').errors?.required"
+                  class="text-danger font-italic text-right">
+                  Required Field
+                </small>
+                <small
+                  *ngIf="(registerForm.get('confirmPassword').touched || submitted) && !isPasswordsMatch  && registerForm.get('confirmPassword').value && registerForm.get('password').valid"
+                  class="text-danger font-italic text-right">
+                  Passwords do Not Match
+                </small>
+
+              </div>
+            </div>
+            <div class="form-check m-0 pb-2">
+              <input class="form-check-input"
+                     type="checkbox" value=""
+                     (input)="onCheckboxChanges()"
+                     id="adminAccessCheckbox"
+                     formControlName="adminAccessCheckbox">
+              <label class="form-check-label" for="adminAccessCheckbox">
+                Create Account With Admin Permissions
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="accessKey" class="h-color">Admin Permission Access Key</label>
+              <input type="password"
+                     [style.border]="((registerForm.get('accessKey').touched || submitted)
+                                     && !registerForm.get('accessKey').value && !registerForm.get('accessKey').disabled)
+                                     || (!validAccessKey && registerForm.get('accessKey').value) ? '1px solid red' : '1px solid gray'"
+                     (input)="onAccessKeyChanges()"
+                     formControlName="accessKey"
+                     class="form-control no-background"
+                     id="accessKey"
+                     placeholder="Enter Key">
+              <div class="validation-message text-right">
+                <small
+                  *ngIf="(registerForm.get('accessKey').touched || submitted ) && !registerForm.get('accessKey').value && !registerForm.get('accessKey').disabled"
+                  class="text-danger font-italic text-right">
+                  Required Field
+                </small>
+                <small
+                  *ngIf="((registerForm.get('accessKey').touched || submitted ) && !validAccessKey) && registerForm.get('accessKey').value && !registerForm.get('accessKey').disabled"
+                  class="text-danger font-italic text-right">
+                  Access Key is not Valid
+                </small>
+              </div>
+            </div>
+            <div class="text-center mt-lg-3">
+              <button type="submit"
+                      [class.invalid]="((submitted || registerForm.touched) && (registerForm.invalid || isEmailUsed || !isPasswordsMatch)) "
+                      class="my-btn w-100">
+                Submit
+              </button>
+            </div>
+          </form>
+          <div class="text-center mt-3">
+            <p class="m-0">Already have an account? <span class="navigate-link" (click)="onNavigateSignIn()">Sign In Now.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+    </div>
+  </div>
+</main>

@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
-import {IEvent} from '../../interfaces';
-import {ModalService} from '../../../services/modal.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

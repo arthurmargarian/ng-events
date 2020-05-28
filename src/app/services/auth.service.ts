@@ -6,24 +6,33 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
+  private baseURL = environment.baseURL;
   private authURL = environment.authURL;
 
   constructor(private http: HttpClient) {
   }
 
-  login(userInfo) {
-    return this.http.post(`${this.authURL}/auth/login`, userInfo);
+  public login(userCredentials) {
+    return this.http.post(`${this.authURL}/auth/login`, userCredentials);
   }
 
-  isAuthenticated() {
+  public register(userInfo) {
+    return this.http.post(`${this.baseURL}/users`, userInfo);
+  }
+
+  public emailValidator(email:string){
+    return this.http.get(`${this.baseURL}/users?email_like=${email}`);
+  }
+
+  public isAuthenticated() {
     return !!localStorage.getItem('token');
   }
 
-  isAdmin() {
+  public isAdmin() {
     return !!localStorage.getItem('isAdmin');
   }
 
-  logout() {
+  public logout() {
     localStorage.clear();
   }
 }
