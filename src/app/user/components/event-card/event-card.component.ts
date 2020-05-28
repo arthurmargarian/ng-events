@@ -1,22 +1,21 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {IEvent, IEventType} from '../../../shared/interfaces';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-event-card',
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss']
 })
-export class EventCardComponent implements OnChanges {
+export class EventCardComponent {
   @Input() event: IEvent;
   @Input() eventTypes: IEventType[];
-  private showLoader = true;
-  private showImage = false;
 
-  constructor() {
+  constructor(private modalService: NgbModal) {
   }
 
-  ngOnChanges() {
-    this.showLoader = !Boolean(this.event && this.eventTypes);
-    this.showImage = true;
+  public openModal(content): void {
+    this.modalService.open(content, {centered: true});
   }
+
 }

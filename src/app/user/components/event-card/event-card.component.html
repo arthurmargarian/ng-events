@@ -1,18 +1,41 @@
-<div class="event-card">
+<div class="event-card" (click)="openModal(singleEvent)">
   <div class="event-image">
-    <img src="../../../../assets/images/party.jpg" alt="" *ngIf="showImage;else imgLoader">
-    <ng-template #imgLoader >
-      <app-loader [size]="'lg'" class="img-loader"></app-loader>
-    </ng-template>
+    <img [src]="event.imageUrl" [alt]="eventTypes[event.eventType - 1].type">
   </div>
-  <div class="event-content" *ngIf="!showLoader,else loader">
+  <div class="event-content">
     <div class="event-name">{{event.name}}</div>
     <div class="event-type">{{eventTypes[event.eventType - 1].type}}</div>
-    <p class="event-des" title="{{event.description}}">{{event.description}}</p>
-    <div class="event-date">{{event.date}}</div>
+    <p class="event-des">
+      <span class="desc"
+            *ngIf="event.shortDescription,else fullDescription"
+            [ngbPopover]="event.description"
+            triggers="mouseenter:mouseleave">
+            {{event.shortDescription + ' . . . '}}
+          </span>
+      <ng-template #fullDescription>
+        <span class="desc">{{event.description}}</span>
+      </ng-template>
+    </p>
+    <div class="event-date">{{event.date | date}}</div>
   </div>
-  <ng-template #loader>
-    <app-loader [size]="'md'" class="info-loader"></app-loader>
-  </ng-template>
 </div>
 
+<ng-template #singleEvent let-modal>
+  <div class="modal-header text-center">
+    <h3 class="modal-title h-color">{{event.name}}</h3>
+  </div>
+  <div class="modal-body p-0">
+    <div class="img-content">
+      <img class="card-img-top" [src]="event.imageUrl"
+           alt="{{eventTypes[event.eventType - 1].type}}">
+    </div>
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted font-italic">{{eventTypes[event.eventType - 1].type}}</h6>
+      <p class="card-text">{{event.description}}</p>
+      <h6 class="card-subtitle mb-2 text-muted font-italic text-right">{{event.date | date}}</h6>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="my-btn" (click)="modal.close()">Close</button>
+    </div>
+  </div>
+</ng-template>

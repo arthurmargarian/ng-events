@@ -11,6 +11,7 @@
 }
 
 .event-card {
+  cursor: pointer;
   background: rgba(32, 41, 58, 0.8);
   border-radius: 5px;
   box-shadow: 0 0 20px 6px rgba(0, 0, 0, 0.5);
@@ -67,4 +68,13 @@
 
 .img-loader {
   padding: 0 40px;
+}
+
+.img-content {
+  padding: 20px;
+
+  img {
+    border-radius: 5px !important;
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+  }
 }

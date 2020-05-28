@@ -69,7 +69,6 @@ export class EventsTableComponent implements OnInit {
         for (let i = 0; i < this.totalPageCount; i++) {
           this.pages.push(i + 1);
         }
-        console.log(this.limitedEvents);
         this.showLoader = false;
       });
   }
