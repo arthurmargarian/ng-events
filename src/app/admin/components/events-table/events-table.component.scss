@@ -10,7 +10,8 @@
     border-bottom: 2px solid rgb(130, 160, 179);
     color: rgb(255, 255, 255);
   }
-  td{
+
+  td {
     word-break: break-all;
   }
 }
@@ -107,5 +108,22 @@
 
   &.calendar {
     border-radius: 0 5px 5px 0;
+  }
+}
+
+.name-td {
+  cursor: pointer;
+
+  &:hover {
+    color: rgba(16, 44, 73);
+  }
+}
+
+.img-content {
+  padding: 20px;
+
+  img {
+    border-radius: 5px !important;
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
   }
 }

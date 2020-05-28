@@ -17,8 +17,25 @@
       </thead>
       <tbody>
       <tr *ngFor="let event of limitedEvents">
-        <td class="align-middle">{{event.name}}</td>
-        <td class="align-middle"><span class="desc">{{event.description}}</span></td>
+        <td class="align-middle name-td"
+            (click)="openModal(singleEvent, event)">
+          <span ngbPopover="Click to see detailed information"
+                triggers="mouseenter:mouseleave"
+                [popoverTitle]="event.name">
+            {{event.name}}
+          </span>
+        </td>
+        <td class="align-middle">
+          <span class="desc"
+                *ngIf="event.shortDescription,else fullDescription"
+                [ngbPopover]="event.description"
+                triggers="mouseenter:mouseleave">
+            {{event.shortDescription + ' . . . '}}
+          </span>
+          <ng-template #fullDescription>
+            <span class="desc">{{event.description}}</span>
+          </ng-template>
+        </td>
         <td class="align-middle">{{event.date | date}}</td>
         <td>{{eventTypes[event.eventType - 1].type}}</td>
         <td class="align-middle">
@@ -95,7 +112,8 @@
             *ngIf="form.get('name').touched && (form.get('name').errors?.minlength || form.get('name').errors?.maxlength)"
             class="text-danger font-italic text-right">
             Name length must be more 3 and less 20 characters
-            (Now: {{form.get('name').errors?.minlength ? form.get('name').errors?.minlength.actualLength :form.get('name').errors?.maxlength.actualLength}})
+            (Now: {{form.get('name').errors?.minlength ? form.get('name').errors?.minlength.actualLength : form.get('name').errors?.maxlength.actualLength}}
+            )
           </small>
         </div>
       </div>
@@ -106,7 +124,7 @@
                   placeholder="Enter Description"
                   formControlName="description"
                   [style.border]=" ((form.get('description').touched || submitted ) && (form.get('description').errors?.required || form.get('description').errors?.minlength)) ? '1px solid red' : '1px solid gray'"
-                  rows="2">
+                  rows="5">
         </textarea>
         <div class="validation-message text-right">
           <small
@@ -117,8 +135,9 @@
           <small
             *ngIf="form.get('description').touched &&  (form.get('description').errors?.minlength || form.get('description').errors?.maxlength )"
             class="text-danger font-italic text-right">
-            Description length must be more 30 and less 100 characters
-            (Now: {{form.get('description').errors?.minlength ? form.get('description').errors?.minlength.actualLength :form.get('name').errors?.maxlength.actualLength}})
+            Description length must be more 30 and less 300 characters
+            (Now: {{form.get('description').errors?.minlength ? form.get('description').errors?.minlength.actualLength : form.get('description').errors?.maxlength.actualLength}}
+            )
           </small>
         </div>
       </div>
@@ -192,5 +211,27 @@
   <div class="modal-footer">
     <button type="button" class="my-btn" (click)="modal.close()">Cancel</button>
     <button type="button" class="my-btn delete" (click)="onDeleteEvent()">Delete</button>
+  </div>
+</ng-template>
+
+<ng-template #singleEvent let-modal>
+  <div class="modal-header text-center">
+    <h3 class="modal-title h-color">{{currentEvent.name}}</h3>
+  </div>
+  <div class="modal-body p-0">
+    <div class="img-content">
+      <img class="card-img-top" [src]="currentEvent.imageUrl"
+           alt="{{eventTypes[currentEvent.eventType - 1].type}}">
+    </div>
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted font-italic">{{eventTypes[currentEvent.eventType - 1].type}}</h6>
+      <p class="card-text">{{currentEvent.description}}</p>
+      <h6 class="card-subtitle mb-2 text-muted font-italic text-right">{{currentEvent.date | date}}</h6>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="my-btn delete" (click)="openModal(confirm, currentEvent)">Delete</button>
+    <button class="my-btn edit" (click)="openModal(createUpdate, currentEvent)">Edit</button>
+    <button type="button" class="my-btn ml-auto" (click)="modal.close()">Close</button>
   </div>
 </ng-template>

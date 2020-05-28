@@ -45,7 +45,7 @@ export class EventsTableComponent implements OnInit {
   private initForm(): void {
     this.form = this.fb.group({
       'name': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])],
-      'description': ['', Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(100)])],
+      'description': ['', Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(300)])],
       'date': ['', Validators.compose([Validators.required])],
       'eventType': ['', Validators.compose([Validators.required])],
     });
@@ -55,12 +55,21 @@ export class EventsTableComponent implements OnInit {
     this.eventsService.getLimitedEvents(currentPage, eventCountLimit)
       .subscribe((res: HttpResponse<any>) => {
         this.limitedEvents = res.body;
+
+        this.limitedEvents.forEach((event, idx) => {
+          if (event.description.length >= 50) {
+            this.limitedEvents[idx]['shortDescription'] = event.description.slice(0, 50);
+          }
+          this.limitedEvents[idx]['imageUrl'] = `assets/images/${this.eventTypes[event.eventType - 1].type}.jpg`;
+        });
+
         this.pages = [];
         this.totalPageCount = Math.ceil((+res.headers.get('X-Total-Count') / eventCountLimit));
         this.currentPage = currentPage;
         for (let i = 0; i < this.totalPageCount; i++) {
           this.pages.push(i + 1);
         }
+        console.log(this.limitedEvents);
         this.showLoader = false;
       });
   }
@@ -69,7 +78,7 @@ export class EventsTableComponent implements OnInit {
   // EVENT HANDLERS
 
   public openModal(content, event?: IEvent): void {
-    console.log(this.form.get('name').errors);
+    this.modalService.dismissAll();
     if (event) {
       this.isEdit = true;
       this.currentEvent = event;

@@ -20,7 +20,8 @@ export interface IEvent {
   description: string,
   date: NgbDate,
   eventType: number,
-  image?: string,
+  imageUrl?: string,
+  shortDescription?:string
 }
 
 export interface IEventType {

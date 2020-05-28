@@ -19,13 +19,6 @@
   ],
   "events": [
     {
-      "name": "Name 3",
-      "description": "Vacho Abo Vacho Abo Vacho Abo Vacho Abo Vacho Abo",
-      "date": "2021-04-12T20:00:00.000Z",
-      "eventType": 4,
-      "id": 3
-    },
-    {
       "name": "Name 11",
       "description": "lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       "date": "2020-06-29T20:00:00.000Z",
@@ -40,11 +33,32 @@
       "id": 5
     },
     {
-      "description": "asd asd asd asd asd asd asd asd 666666666666666666666666666666666666666666666666666666666",
+      "description": "asd asd asd asd asd asd asd asd ",
       "date": "2020-05-27T20:00:00.000Z",
       "eventType": "2",
       "name": "New",
       "id": 7
+    },
+    {
+      "description": "asd asd asd asd asd asd asd asd",
+      "date": "2020-05-30T20:00:00.000Z",
+      "eventType": "2",
+      "name": "New",
+      "id": 8
+    },
+    {
+      "description": "short Descr iption short Descri ption short Descr iption short Descripti on short Descr iption short Descri ption short Des cription short Desc ription short Desc ription short Descr iption short Descri ption short Descr iption short Descripti on short Descr iption short Descri ption ",
+      "date": "2020-06-25T20:00:00.000Z",
+      "eventType": "2",
+      "name": "1212121",
+      "id": 9
+    },
+    {
+      "name": "Name 3",
+      "description": "Vacho Abo Vacho Abo Vacho Abo Vacho Abo Vacho Abo",
+      "date": "2021-04-12T20:00:00.000Z",
+      "eventType": "3",
+      "id": 10
     }
   ],
   "eventTypes": [
@@ -62,7 +76,7 @@
     },
     {
       "value": 4,
-      "type": "Meet-up"
+      "type": "Education"
     }
   ]
 }
