@@ -90,7 +90,7 @@
 
 <ng-template #createUpdate let-modal>
   <div class="modal-header">
-    <h4 class="modal-title h-color">Create Event</h4>
+    <h4 class="modal-title h-color">{{currentEvent ? currentEvent.name : "Create Event"}}</h4>
   </div>
   <div class="modal-body">
     <form [formGroup]="form">

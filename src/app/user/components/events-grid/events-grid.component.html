@@ -1,6 +1,6 @@
 <main class="container" *ngIf="allEvents">
-  <h1>Events</h1>
-  <div class="cards" *ngIf="allEvents.length !== 0; else noEvents">
+  <h1 *ngIf="allEvents.length">Events</h1>
+  <div class="cards" *ngIf="allEvents.length; else noEvents">
     <app-event-card
       *ngFor="let event of allEvents"
       [event]="event"

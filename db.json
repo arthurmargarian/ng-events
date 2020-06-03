@@ -1,36 +1,28 @@
 {
   "users": [
     {
-      "id": 1,
       "name": "Arthur",
       "srName": "Margarian",
-      "email": "admin@gmail.com",
-      "password": "pass1234",
-      "isAdmin": true
-    },
-    {
-      "id": 2,
-      "name": "User",
-      "srName": "User1",
       "email": "user@gmail.com",
       "password": "pass1234",
-      "isAdmin": false
-    },
-    {
-      "name": "User",
-      "srName": "SrName",
-      "email": "user1@gmail.com",
-      "password": "pass1234",
       "isAdmin": false,
-      "id": 3
+      "id": 1
     },
     {
-      "name": "admin",
-      "srName": "adminSrName",
-      "email": "admin1@gmail.com",
+      "name": "Petros",
+      "srName": "Petrosyan",
+      "email": "admin@gmail.com",
       "password": "pass1234",
       "isAdmin": true,
-      "id": 4
+      "id": 2
+    },
+    {
+      "name": "Vardan",
+      "srName": "Vardanyan",
+      "email": "vardan@gmail.com",
+      "password": "pass1234",
+      "isAdmin": true,
+      "id": 3
     }
   ],
   "events": [
@@ -189,27 +181,6 @@
       "date": "2021-01-10T21:16:08Z"
     },
     {
-      "id": 23,
-      "name": "Nectarinia chalybea",
-      "description": "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.Fusce consequat. Nulla nisl. Nunc nisl.Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-      "eventType": 1,
-      "date": "2021-05-05T06:33:06Z"
-    },
-    {
-      "id": 24,
-      "name": "Sceloporus magister",
-      "description": "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
-      "eventType": 3,
-      "date": "2021-02-06T09:53:45Z"
-    },
-    {
-      "id": 25,
-      "name": "unavailable",
-      "description": "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-      "eventType": 4,
-      "date": "2021-05-12T15:10:33Z"
-    },
-    {
       "id": 26,
       "name": "Macropus parryi",
       "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
@@ -217,60 +188,11 @@
       "date": "2021-02-09T04:36:02Z"
     },
     {
-      "id": 27,
-      "name": "Manouria emys",
-      "description": "Fusce consequat. Nulla nisl. Nunc nisl.Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-      "eventType": 1,
-      "date": "2021-03-18T18:26:11Z"
-    },
-    {
-      "id": 28,
-      "name": "Crotaphytus collaris",
-      "description": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
-      "eventType": 5,
-      "date": "2021-01-01T04:07:29Z"
-    },
-    {
-      "id": 29,
-      "name": "Cygnus atratus",
-      "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.In congue. Etiam justo. Etiam pretium iaculis justo.In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-      "eventType": 3,
-      "date": "2020-11-19T21:44:55Z"
-    },
-    {
-      "id": 30,
-      "name": "Diceros bicornis",
-      "description": "Sed ante. Vivamus tortor. Duis mattis egestas metus.Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-      "eventType": 1,
-      "date": "2020-12-28T09:48:36Z"
-    },
-    {
-      "id": 31,
-      "name": "Phalacrocorax niger",
-      "description": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-      "eventType": 4,
-      "date": "2020-11-07T23:34:55Z"
-    },
-    {
-      "id": 33,
-      "name": "Hippotragus equinus",
-      "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-      "eventType": 5,
-      "date": "2021-02-10T09:29:25Z"
-    },
-    {
-      "id": 34,
-      "name": "Cervus duvauceli",
-      "description": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-      "eventType": 2,
-      "date": "2020-06-28T13:44:16Z"
-    },
-    {
-      "id": 35,
-      "name": "Hystrix indica",
-      "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-      "eventType": 3,
-      "date": "2021-03-14T07:57:09Z"
+      "name": "new Event ",
+      "description": "some description for new event ",
+      "date": "2020-10-29T20:00:00.000Z",
+      "eventType": "3",
+      "id": 35
     }
   ],
   "eventTypes": [

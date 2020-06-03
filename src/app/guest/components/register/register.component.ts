@@ -103,7 +103,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public onAccessKeyChanges(): void {
-    this.validAccessKey = this.registerForm.get('accessKey').value === 'admin';
+    this.validAccessKey = this.registerForm.get('accessKey').value === 'admin'; //TODO Admin Access Key
   }
 
   public onEmailChanges(): void {

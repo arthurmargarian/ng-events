@@ -19,7 +19,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pageName = this.authService.isAuthenticated() ? 'Events' : 'Login';
+    this.pageName = this.authService.isAuthenticated() ? this.authService.isAdmin() ? 'Events Table' : 'Events Grid' : 'Login';
   }
 
   goTo() {

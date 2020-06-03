@@ -2,7 +2,7 @@
   "name": "events",
   "version": "0.0.0",
   "scripts": {
-    "mix": "concurrently --kill-others \"npm run server\" \"npm run auth\" \"npm run start\"",
+    "events": "concurrently --kill-others \"npm run server\" \"npm run auth\" \"npm run start\"",
     "ng": "ng",
     "start": "ng serve --port 8888",
     "build": "ng build",

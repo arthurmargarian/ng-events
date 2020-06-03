@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  // baseURL : 'https://volo-test.herokuapp.com',
   authURL: 'http://localhost:3000',
   baseURL: 'http://localhost:3333'
 };
